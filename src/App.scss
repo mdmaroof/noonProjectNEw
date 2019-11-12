@@ -2,13 +2,13 @@
     margin:10px 20px;
 }
 .input{
-    input{
+    &__inputButton{
         width: 300px;
         font-size: 16px;
         font-weight: 300;
         padding: 5px 10px;
     }
-    button{
+    &__buttonAddToDo{
         background: transparent;
         margin-left:10px;
         padding: 5px 10px;
@@ -22,47 +22,63 @@
 }
 .todolist{
     margin-top:10px;
-    ul{
+    &__underlineClass{
         list-style-type:none;
-        li{
+        &--listingItems{
             font-size: 18px;
             font-weight: 100;
+        };
+        &--toDoCompleted{
+          text-decoration: line-through;
         }
+    };
+    &__labelBoxElementOne{
+      &--inputCheckBox{
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+      };
+      &--spanClass{
+        cursor: pointer;
+        font: 16px sans-serif;
+        color: black;
+        &:before{
+          content: '';
+          border: 1px solid grey;
+          border-radius: 3px;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          margin-right: 0.5em;
+          margin-top: 0.5em;
+          vertical-align: -2px;
+        }
+      }
+    };
+    &__labelBox{
+      &--inputCheckBox{
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+      };
+      &--spanClass{
+        cursor: pointer;
+        font: 16px sans-serif;
+        color: black;
+        &:before{
+          content: '';
+          border: 1px solid grey;
+          border-radius: 3px;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          margin-right: 0.5em;
+          margin-top: 0.5em;
+          vertical-align: -2px;
+        }
+      }
     }
 }
-
-.toDoCompleted{
-    text-decoration: line-through;
-
-}
-.hide{
-    display: none;
-}
-
-input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    z-index: -1;
-  }
-  
-
-  input[type="checkbox"]+span {
-    cursor: pointer;
-    font: 16px sans-serif;
-    color: black;
-  }
-  
-  input[type="checkbox"]+span:before {
-    content: '';
-    border: 1px solid grey;
-    border-radius: 3px;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-right: 0.5em;
-    margin-top: 0.5em;
-    vertical-align: -2px;
-  }
   
   input[type="checkbox"]:checked+span:before {
     background-image: url('https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/collection/build/ionicons/svg/ios-checkmark.svg');

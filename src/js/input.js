@@ -24,8 +24,8 @@ class Input extends Component {
     render() {
         return (
             <div className="input">
-                <input placeholder="Enter Your To Do List" value={this.state.inputValue} onChange={this.changeValue}/>
-                <button onClick={this.addToDoList}>Add To Do List</button>
+                <input className="input__inputButton" placeholder="Enter Your To Do List" value={this.state.inputValue} onChange={this.changeValue}/>
+                <button className="input__buttonAddToDo" onClick={this.addToDoList}>Add To Do List</button>
             </div>
         );
     }

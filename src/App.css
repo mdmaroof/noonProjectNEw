@@ -2,14 +2,14 @@
   margin: 10px 20px;
 }
 
-.input input {
+.input__inputButton {
   width: 300px;
   font-size: 16px;
   font-weight: 300;
   padding: 5px 10px;
 }
 
-.input button {
+.input__buttonAddToDo {
   background: transparent;
   margin-left: 10px;
   padding: 5px 10px;
@@ -26,36 +26,56 @@
   margin-top: 10px;
 }
 
-.todolist ul {
+.todolist__underlineClass {
   list-style-type: none;
 }
 
-.todolist ul li {
+.todolist__underlineClass--listingItems {
   font-size: 18px;
   font-weight: 100;
 }
 
-.toDoCompleted {
+.todolist__underlineClass--toDoCompleted {
   text-decoration: line-through;
 }
 
-.hide {
-  display: none;
-}
-
-input[type="checkbox"] {
+.todolist__labelBoxElementOne--inputCheckBox {
   position: absolute;
   opacity: 0;
   z-index: -1;
 }
 
-input[type="checkbox"] + span {
+.todolist__labelBoxElementOne--spanClass {
   cursor: pointer;
   font: 16px sans-serif;
   color: black;
 }
 
-input[type="checkbox"] + span:before {
+.todolist__labelBoxElementOne--spanClass:before {
+  content: '';
+  border: 1px solid grey;
+  border-radius: 3px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5em;
+  margin-top: 0.5em;
+  vertical-align: -2px;
+}
+
+.todolist__labelBox--inputCheckBox {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.todolist__labelBox--spanClass {
+  cursor: pointer;
+  font: 16px sans-serif;
+  color: black;
+}
+
+.todolist__labelBox--spanClass:before {
   content: '';
   border: 1px solid grey;
   border-radius: 3px;

@@ -22,25 +22,26 @@ class ToDoList extends Component {
     }
 
     render() {
+       const toDoList = this.state.isChecked === true ?  this.props.toDoList.filter(z => !this.props.toDoListCompleted.includes(z)) : this.props.toDoList
         return (
             <div className="todolist">
                 {this.props.toDoList.length === 0 ?
                     'No To Do List Yet Please Add It'
                     :
                     <React.Fragment>
-                        <label>
-                            <input type="checkbox" onChange={this.hide} /> 
-                            <span>Hide Completed To Do List</span>
+                        <label className="todolist__labelBoxElementOne">
+                            <input className="todolist__labelBoxElementOne--inputCheckBox" type="checkbox" onChange={this.hide} /> 
+                            <span className="todolist__labelBoxElementOne--spanClass">Hide Completed To Do List</span>
                             
                         </label>
-                        <ul>
-                            {this.props.toDoList.map(x => {
+                        <ul className="todolist__underlineClass">
+                            {toDoList.map(x => {
                                 return (
-                                    <li className={this.state.isChecked === true && this.props.toDoListCompleted.includes(x) ? 'hide' : '' || this.props.toDoListCompleted.includes(x) ? 'toDoCompleted' : ''} key={x}>
-                                        <label>
-                                            <input name={x} checked={this.props.toDoListCompleted.includes(x)}
+                                    <li className={this.props.toDoListCompleted.includes(x) ? 'todolist__underlineClass--listingItems todolist__underlineClass--toDoCompleted' : 'todolist__underlineClass--listingItems'} key={x}>
+                                        <label className="todolist__labelBox">
+                                            <input className="todolist__labelBox--inputCheckBox" name={x} checked={this.props.toDoListCompleted.includes(x)}
                                                 onChange={(event) => this.handleClick(event)} type="checkbox" />
-                                             <span>{x}</span>
+                                             <span className="todolist__labelBox--spanClass">{x}</span>
                                         </label>
 
                                     </li>
