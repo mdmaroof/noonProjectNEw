@@ -1,7 +1,7 @@
 import {observable,action} from 'mobx';
 
 class store {
-    @observable toDoList = ['abc'];
+    @observable toDoList = ['abc','xyz'];
     @observable toDoListCompleted = []
 
 

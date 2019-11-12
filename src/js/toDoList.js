@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
-import {inject,observer} from 'mobx-react';
+import {connect} from 'react-redux';
 
-@inject('store')
-@observer
 class ToDoList extends Component {
     state = {
         isChecked : false
     }
     handleClick = async(e,x) => {
-        if(this.props.store.toDoListCompleted.includes(e.target.name)){
-            const indexList = await this.props.store.toDoListCompleted.indexOf(e.target.name);
-            this.props.store.toDoListCompleted.splice(indexList, 1);
+        if(this.props.toDoListCompleted.includes(e.target.name)){
+
+            this.props.deleteToDoListCompleted(e.target.name)
         }
         else{
-            this.setState({
-                toDoListCompleted:this.props.store.toDoListCompleted.push(e.target.name)
-            })
+            this.props.addToDoListCompleted(e.target.name)
         }
     }
     hide = async() => {
@@ -28,7 +24,7 @@ class ToDoList extends Component {
     render() {
         return (
             <div className="todolist">
-                {this.props.store.toDoList.length === 0 ?
+                {this.props.toDoList.length === 0 ?
                     'No To Do List Yet Please Add It'
                     :
                     <React.Fragment>
@@ -38,12 +34,11 @@ class ToDoList extends Component {
                             
                         </label>
                         <ul>
-                            {this.props.store.toDoList.map(x => {
+                            {this.props.toDoList.map(x => {
                                 return (
-                                    <li className={this.state.isChecked === true && this.props.store.toDoListCompleted.includes(x) ? 'hide' : '' || this.props.store.toDoListCompleted.includes(x) ? 'toDoCompleted' : ''} key={x}>
-
+                                    <li className={this.state.isChecked === true && this.props.toDoListCompleted.includes(x) ? 'hide' : '' || this.props.toDoListCompleted.includes(x) ? 'toDoCompleted' : ''} key={x}>
                                         <label>
-                                            <input name={x} checked={this.props.store.toDoListCompleted.includes(x)}
+                                            <input name={x} checked={this.props.toDoListCompleted.includes(x)}
                                                 onChange={(event) => this.handleClick(event)} type="checkbox" />
                                              <span>{x}</span>
                                         </label>
@@ -62,4 +57,18 @@ class ToDoList extends Component {
     }
 }
 
-export default ToDoList;
+const mapStateToProps = (state) => {
+    return{
+        toDoList:state.toDoList,
+        toDoListCompleted:state.toDoListCompleted
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return{
+        deleteToDoListCompleted: (name) =>  {dispatch ({type:'REMOVE_FROM_TODOLIST_COMPLETED',payload:name})},
+        addToDoListCompleted : (name) => {dispatch ({type:'ADD_TODO_LIST_COMPLETED',payload:name})}
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ToDoList);

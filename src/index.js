@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {Provider} from 'mobx-react';
+import {Provider} from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import Store from './store/store';
+import {createStore ,applyMiddleware,compose} from 'redux';
+import rootReducer from './reducers/rootReducer';
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const store = createStore(rootReducer,composeEnhancer(applyMiddleware()));
 
 ReactDOM.render(
-    <Provider store={Store}>
+    <Provider store={store}>
         <App />
     </Provider>
 

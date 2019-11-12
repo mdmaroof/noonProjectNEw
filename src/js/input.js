@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {inject,observer} from 'mobx-react';
-
-@inject('store')
-@observer
+import {connect} from 'react-redux'
 
 class Input extends Component {
     state = {
@@ -18,7 +15,7 @@ class Input extends Component {
             alert('PLEASE ADD SOME VALUE')
         }
         else{
-            await this.props.store.addToDoList(this.state.inputValue)
+            this.props.addToTodo(this.state.inputValue);
             this.setState({
                 inputValue:''
             })
@@ -33,5 +30,15 @@ class Input extends Component {
         );
     }
 }
+const mapStateToProps = (state) => {
+    return{
+        toDoList:state.toDoList
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return{
+        addToTodo: (name) =>  {dispatch ({type:'ADD_TODO',payload:name})}
+    }
+}
 
-export default Input;
+export default connect(mapStateToProps,mapDispatchToProps)(Input);
